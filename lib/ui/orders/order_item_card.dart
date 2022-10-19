@@ -10,14 +10,14 @@ class OrderItemCard extends StatefulWidget {
 
   const OrderItemCard(this.order, {super.key});
 
-  @override 
+  @override
   State<OrderItemCard> createState() => _OrderItemCartState();
 }
 
 class _OrderItemCartState extends State<OrderItemCard> {
   var _expanded = false;
 
-  @override 
+  @override
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.all(10),
@@ -29,35 +29,35 @@ class _OrderItemCartState extends State<OrderItemCard> {
       ),
     );
   }
-  
+
   Widget buildOrderDetails() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 4),
-      height: min(widget.order.productCount*20.0+10, 100),
+      height: min(widget.order.productCount * 20.0 + 10, 100),
       child: ListView(
         children: widget.order.products
-        .map(
-          (prod) => Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(
-                prod.title,
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
+            .map(
+              (prod) => Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    prod.title,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    '${prod.quantity}x \$${prod.price}',
+                    style: const TextStyle(
+                      fontSize: 18,
+                      color: Colors.grey,
+                    ),
+                  )
+                ],
               ),
-              Text(
-                '${prod.quantity}x \$${prod.price}',
-                style: const TextStyle(
-                  fontSize: 18,
-                  color: Colors.grey,
-                ),
-              )
-            ],
-          ),
-        )
-        .toList(),
+            )
+            .toList(),
       ),
     );
   }
