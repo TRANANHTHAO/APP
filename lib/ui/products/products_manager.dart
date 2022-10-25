@@ -86,6 +86,15 @@ class ProductsManager with ChangeNotifier {
     }
   }
 
+  Future<void> toggleFavoriteStatus(Product product) async {
+    final savedStatus = product.isFavorite;
+    product.isFavorite = !savedStatus;
+
+    if (!await _productsService.saveFavoriteStatus(product)) {
+      product.isFavorite = savedStatus;
+    }
+  }
+
   int get itemCount {
     return _items.length;
   }
@@ -119,10 +128,10 @@ class ProductsManager with ChangeNotifier {
   //   }
   // }
 
-  void toggleFavoriteStatus(Product product) {
-    final saveStatus = product.isFavorite;
-    product.isFavorite = !saveStatus;
-  }
+  // void toggleFavoriteStatus(Product product) {
+  //   final saveStatus = product.isFavorite;
+  //   product.isFavorite = !saveStatus;
+  // }
 
   // void deleteProduct(String id) {
   //   final index = _items.indexWhere((item) => item.id == id);
